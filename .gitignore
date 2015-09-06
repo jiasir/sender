@@ -1,3 +1,4 @@
+/sender.iml
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
 *.a
@@ -12,6 +13,7 @@ _test
 [568vq].out
 
 *.cgo1.go
+/.idea
 *.cgo2.c
 _cgo_defun.c
 _cgo_gotypes.go
