@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"bytes"
 )
 
 func main() {
@@ -15,7 +16,8 @@ func main() {
 
 	_ = subject
 
-	res, err := http.Get("http://10.10.11.241/sms.php?phone="+phone+"&content="+body)
+	url := getUrl(phone, body)
+	res, err := http.Get(url)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -25,4 +27,20 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Printf("%s", robots)
+}
+
+func getUrl(phone, body string) string {
+	buf := bytes.Buffer{}
+	buf.WriteString("http://10.10.11.241/sms.php?phone=")
+	buf.WriteString(phone)
+	buf.WriteString("&content=")
+	buf.WriteString(body)
+	return buf.String()
+}
+
+func convToStr(body []string) (str string) {
+	for _, v:= range body {
+		str += v
+	}
+	return
 }
